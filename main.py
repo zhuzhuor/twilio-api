@@ -20,7 +20,7 @@ except:
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
 
 
-@app.route('/call_me/<access_token>', methods=['POST'])
+@app.route('/<access_token>/call_me', methods=['POST'])
 def call_me(access_token):
     if access_token != ACCESS_TOKEN:
         abort(403)
@@ -38,7 +38,7 @@ def call_me(access_token):
     return call.sid
 
 
-@app.route('/handle_call/<access_token>', methods=['POST'])
+@app.route('/<access_token>/handle_call', methods=['POST'])
 def handle_call(access_token):
     if access_token != ACCESS_TOKEN:
         abort(403)
@@ -48,7 +48,7 @@ def handle_call(access_token):
     return Response(str(resp), mimetype='text/xml')
 
 
-@app.route('/text_me/<access_token>', methods=['POST'])
+@app.route('/<access_token>/text_me', methods=['POST'])
 def text_me(access_token):
     if access_token != ACCESS_TOKEN:
         abort(403)
@@ -67,7 +67,7 @@ def text_me(access_token):
     return message.sid
 
 
-@app.route('/handle_text/<access_token>', methods=['POST'])
+@app.route('/<access_token>/handle_text', methods=['POST'])
 def handle_text(access_token):
     if access_token != ACCESS_TOKEN:
         abort(403)
