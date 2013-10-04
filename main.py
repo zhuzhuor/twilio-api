@@ -13,7 +13,10 @@ twilio_client = TwilioRestClient(
     os.environ.get('TWILIO_SID'),
     os.environ.get('TWILIO_TOKEN')
 )
-sentry_client = Sentry(app, dsn=os.environ.get('SENTRY_DSN'))
+try:
+    sentry_client = Sentry(app, dsn=os.environ.get('SENTRY_DSN'))
+except:
+    pass
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
 
 
