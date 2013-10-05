@@ -4,7 +4,6 @@ import os
 from flask import Flask, request, Response, abort
 from twilio import twiml
 from twilio.rest import TwilioRestClient
-from raven.contrib.flask import Sentry
 
 
 app = Flask(__name__)
@@ -13,7 +12,9 @@ twilio_client = TwilioRestClient(
     os.environ.get('TWILIO_SID'),
     os.environ.get('TWILIO_TOKEN')
 )
+sentry_client = None
 try:
+    from raven.contrib.flask import Sentry
     sentry_client = Sentry(app, dsn=os.environ.get('SENTRY_DSN'))
 except:
     pass
