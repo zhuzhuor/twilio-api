@@ -5,6 +5,8 @@ from flask import Flask, request, Response, abort
 from twilio import twiml
 from twilio.rest import TwilioRestClient
 
+ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
+assert ACCESS_TOKEN  # ACCESS_TOKEN must not be empty
 
 app = Flask(__name__)
 TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER')
@@ -18,7 +20,6 @@ try:
     sentry_client = Sentry(app, dsn=os.environ.get('SENTRY_DSN'))
 except:
     pass
-ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
 
 
 @app.route('/<access_token>/call_me', methods=['POST'])
