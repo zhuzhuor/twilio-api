@@ -51,7 +51,7 @@ def handle_call(access_token):
     resp.play(
         'http://com.twilio.music.classical.s3.amazonaws.com/BusyStrings.mp3',
         loop=1)
-    return Response(str(resp), mimetype='text/xml')
+    return Response(resp.toxml(), mimetype='text/xml')
 
 
 @app.route('/<access_token>/text_me', methods=['POST'])
@@ -89,7 +89,7 @@ def handle_text(access_token):
 
     resp = twiml.Response()
     resp.message('This is a response for ' + text_content)
-    return Response(str(resp), mimetype='text/xml')
+    return Response(resp.toxml(), mimetype='text/xml')
 
 
 if __name__ == '__main__':
