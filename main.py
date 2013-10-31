@@ -22,6 +22,15 @@ except:
     pass
 
 
+@app.route('/<access_token>/wake_up', methods=['GET'])
+def call_me(access_token):
+    "wake up heroku instance"
+    if access_token != ACCESS_TOKEN:
+        abort(403)
+
+    return 'OK\n'
+
+
 @app.route('/<access_token>/call_me', methods=['POST'])
 def call_me(access_token):
     if access_token != ACCESS_TOKEN:
